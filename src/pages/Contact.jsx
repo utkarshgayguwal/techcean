@@ -1,14 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import Nav from "../components/Nav.jsx";
 import PageHero from "../components/PageHero.jsx";
+import { G } from "../data/theme.js";
+import { CONTACTS, SOCIALS } from "../data/contact.js";
 import "../styles/global.css";
-
-const G = {
-  bg: "#04060f", bg2: "#07091a", surface: "#0b0f1e",
-  accent: "#00d4ff", green: "#00ff9d", purple: "#8b5cf6",
-  text: "#e2eeff", muted: "#4f6080", border: "rgba(0,212,255,.1)",
-  mono: "'Space Mono', monospace", display: "'Syne', sans-serif",
-};
 
 const css = `
 @keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
@@ -43,18 +38,7 @@ function ContactHero() {
   );
 }
 
-const CONTACTS = [
-  { label: "Email", value: "hello@techcean.co.in", icon: "✉" },
-  { label: "Phone", value: "+91 83297 78934", icon: "📞" },
-  { label: "Location", value: "Mumbai, India", icon: "📍" },
-];
 
-const SOCIALS = [
-  { name: "GitHub", href: "https://github.com", icon: "⌘" },
-  { name: "LinkedIn", href: "https://linkedin.com", icon: "◈" },
-  { name: "Twitter", href: "https://twitter.com", icon: "✦" },
-  { name: "Instagram", href: "https://instagram.com", icon: "◎" },
-];
 
 function ContactInfo() {
   return (

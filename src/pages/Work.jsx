@@ -3,15 +3,9 @@ import { Link } from "react-router-dom";
 import styles from "./Work.module.css";
 import Nav from "../components/Nav.jsx";
 import PageHero from "../components/PageHero.jsx";
+import { G } from "../data/theme.js";
+import { CATEGORIES, PROJECTS, PROCESS_STEPS, TESTI } from "../data/work.js";
 import "../styles/global.css";
-
-/* ── SHARED THEME TOKENS ── */
-const G = {
-  bg: "#04060f", bg2: "#07091a", surface: "#0b0f1e",
-  accent: "#00d4ff", green: "#00ff9d", purple: "#8b5cf6",
-  text: "#e2eeff", muted: "#4f6080", border: "rgba(0,212,255,.1)",
-  mono: "'Space Mono', monospace", display: "'Syne', sans-serif",
-};
 
 function Cursor() {
   const curRef = useRef(); const ringRef = useRef();
@@ -57,8 +51,6 @@ function WorkHero() {
 }
 
 /* ── FILTER BAR ── */
-const CATEGORIES = ["All", "Web App", "AI / ML", "Mobile", "E-Commerce", "Branding"];
-
 function FilterBar({ active, onChange }) {
   return (
     <div className={styles.filterWrap}>
@@ -82,88 +74,6 @@ function FilterBar({ active, onChange }) {
 }
 
 /* ── PROJECT DATA ── */
-const PROJECTS = [
-  {
-    id: 1, cat: "Web App", tag: "Web App",
-    title: "BuildFast Platform",
-    desc: "A SaaS project management platform with real-time collaboration, advanced analytics dashboard, and AI-powered task prioritization.",
-    tags: ["React", "Node.js", "PostgreSQL", "WebSockets"],
-    metric: "2× faster", metricLabel: "delivery speed",
-    year: "2024", client: "BuildFast Inc.",
-    color: G.accent, accent: "rgba(0,212,255,.08)",
-    featured: true,
-  },
-  {
-    id: 2, cat: "AI / ML", tag: "AI / ML",
-    title: "Growlytics AI CRM",
-    desc: "AI-powered CRM that tripled lead conversion through predictive scoring, automated nurture sequences, and behavioral segmentation.",
-    tags: ["Python", "FastAPI", "OpenAI", "React"],
-    metric: "3×", metricLabel: "lead conversion",
-    year: "2024", client: "Growlytics",
-    color: G.green, accent: "rgba(0,255,157,.06)",
-    featured: true,
-  },
-  {
-    id: 3, cat: "E-Commerce", tag: "E-Commerce",
-    title: "Shopflow Commerce",
-    desc: "Headless e-commerce architecture for a D2C brand — custom storefront, inventory sync, and checkout in under 1.2s.",
-    tags: ["Next.js", "Stripe", "Sanity", "Vercel"],
-    metric: "1.2s", metricLabel: "checkout speed",
-    year: "2023", client: "Shopflow",
-    color: G.purple, accent: "rgba(139,92,246,.07)",
-    featured: false,
-  },
-  {
-    id: 4, cat: "Mobile", tag: "Mobile",
-    title: "HealthTrack App",
-    desc: "Cross-platform health monitoring app with wearable sync, AI diet recommendations, and HIPAA-compliant data storage.",
-    tags: ["React Native", "Firebase", "ML Kit", "HealthKit"],
-    metric: "40K+", metricLabel: "active users",
-    year: "2024", client: "HealthTrack",
-    color: G.accent, accent: "rgba(0,212,255,.08)",
-    featured: false,
-  },
-  {
-    id: 5, cat: "Web App", tag: "Web App",
-    title: "Novex Dashboard",
-    desc: "Enterprise analytics dashboard with real-time data pipelines, custom chart builder, and role-based access for 200+ users.",
-    tags: ["Vue.js", "Python", "Redis", "D3.js"],
-    metric: "200+", metricLabel: "enterprise users",
-    year: "2023", client: "Novex Corp",
-    color: G.green, accent: "rgba(0,255,157,.06)",
-    featured: false,
-  },
-  {
-    id: 6, cat: "Branding", tag: "Branding",
-    title: "Zeta Brand System",
-    desc: "Full brand identity + design system for a fintech startup — logo, typography, color tokens, and component library in Figma.",
-    tags: ["Figma", "Tokens", "Storybook", "Design Ops"],
-    metric: "80+", metricLabel: "components",
-    year: "2023", client: "Zeta Finance",
-    color: G.purple, accent: "rgba(139,92,246,.07)",
-    featured: false,
-  },
-  {
-    id: 7, cat: "AI / ML", tag: "AI / ML",
-    title: "DocuMind AI",
-    desc: "Document intelligence platform — upload contracts, invoices, or reports and extract structured data, summaries, and risk flags automatically.",
-    tags: ["LangChain", "Pinecone", "FastAPI", "Next.js"],
-    metric: "90%", metricLabel: "manual effort saved",
-    year: "2024", client: "LegalEdge",
-    color: G.accent, accent: "rgba(0,212,255,.08)",
-    featured: false,
-  },
-  {
-    id: 8, cat: "E-Commerce", tag: "E-Commerce",
-    title: "FreshCart Grocery",
-    desc: "Hyperlocal grocery delivery app with live inventory, dynamic pricing engine, and 15-minute delivery slot optimization.",
-    tags: ["React Native", "Node.js", "MongoDB", "Redis"],
-    metric: "15 min", metricLabel: "delivery window",
-    year: "2024", client: "FreshCart",
-    color: G.green, accent: "rgba(0,255,157,.06)",
-    featured: false,
-  },
-];
 
 /* ── FEATURED PROJECT CARD (large) ── */
 function FeaturedCard({ project, index }) {
@@ -282,13 +192,6 @@ function Marquee() {
 }
 
 /* ── PROCESS / HOW WE WORK ── */
-const PROCESS_STEPS = [
-  { num: "01", title: "Discovery", desc: "We deep-dive into your domain, users, and goals — aligning on the problem before touching any code.", icon: "◎" },
-  { num: "02", title: "Architecture", desc: "We design the system — database schema, API contracts, component structure — so there are zero surprises later.", icon: "⬡" },
-  { num: "03", title: "Build Sprint", desc: "Two-week sprints with daily standups, live staging previews, and direct communication — no middle-men.", icon: "⚡" },
-  { num: "04", title: "Launch & Scale", desc: "We ship, monitor, and iterate. Post-launch support is part of every engagement — we don't disappear.", icon: "▲" },
-];
-
 function ProcessStrip() {
   const [ref, vis] = useReveal();
   return (
@@ -316,12 +219,6 @@ function ProcessStrip() {
 }
 
 /* ── TESTIMONIAL STRIP ── */
-const TESTI = [
-  { q: "TechCean delivered our platform 2 weeks ahead of schedule. The code quality and attention to detail was extraordinary.", name: "Aryan Sharma", role: "Founder — BuildFast", init: "AS", color: G.accent },
-  { q: "Their AI integration tripled our lead conversion rate. Genuinely one of the best technical teams I've worked with.", name: "Priya Mehta", role: "CTO — Growlytics", init: "PM", color: G.green },
-  { q: "From design to deployment the process was smooth, transparent and professional. Will definitely work with them again.", name: "Rahul Desai", role: "Product Manager — Novex", init: "RD", color: G.purple },
-];
-
 function Testimonials() {
   return (
     <section className={styles.testiSection}>

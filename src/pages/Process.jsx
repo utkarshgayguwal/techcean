@@ -2,13 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./Process.module.css";
 import Nav from "../components/Nav.jsx";
 import PageHero from "../components/PageHero.jsx";
-
-const G = {
-  bg: "#04060f", bg2: "#07091a", surface: "#0b0f1e",
-  accent: "#00d4ff", green: "#00ff9d", purple: "#8b5cf6",
-  text: "#e2eeff", muted: "#4f6080", border: "rgba(0,212,255,.1)",
-  mono: "'Space Mono', monospace", display: "'Syne', sans-serif",
-};
+import { G } from "../data/theme.js";
+import { STEPS, FAQS, TOOLS } from "../data/process.js";
 
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
@@ -117,105 +112,6 @@ function Hero() {
   );
 }
 
-/* ── PROCESS STEPS DATA ── */
-const STEPS = [
-  {
-    num: "01", phase: "Phase One",
-    title: "Discovery & Alignment",
-    icon: "◎",
-    color: "#00d4ff",
-    duration: "1–2 weeks",
-    desc: "We start by deeply understanding your business, users, and technical landscape. No assumptions, no templates.",
-    details: [
-      "Stakeholder interviews & goal mapping",
-      "User research & persona definition",
-      "Competitor & market analysis",
-      "Technical feasibility audit",
-      "Risk identification & mitigation plan",
-    ],
-    deliverable: "Project Charter + Technical Brief",
-  },
-  {
-    num: "02", phase: "Phase Two",
-    title: "Architecture & Design",
-    icon: "⬡",
-    color: "#00ff9d",
-    duration: "1–3 weeks",
-    desc: "System design, tech stack selection, and UI/UX wireframes — all locked before a single line of production code.",
-    details: [
-      "Database schema & API contract design",
-      "Tech stack selection & rationale",
-      "UI/UX wireframes & prototypes",
-      "Component library setup",
-      "Infrastructure & DevOps planning",
-    ],
-    deliverable: "Architecture Doc + Figma Prototype",
-  },
-  {
-    num: "03", phase: "Phase Three",
-    title: "Build Sprints",
-    icon: "⚡",
-    color: "#8b5cf6",
-    duration: "4–12 weeks",
-    desc: "Two-week sprints with real deliverables at every checkpoint. Staging previews, async standups, total transparency.",
-    details: [
-      "Two-week sprint cycles",
-      "Daily async standups via Slack/Linear",
-      "Live staging environment previews",
-      "Code review & QA at each sprint",
-      "Weekly client sync & demo",
-    ],
-    deliverable: "Working Product Increments",
-  },
-  {
-    num: "04", phase: "Phase Four",
-    title: "QA & Hardening",
-    icon: "◈",
-    color: "#00d4ff",
-    duration: "1–2 weeks",
-    desc: "Automated tests, load testing, security audits, and accessibility checks — we don't ship anything we wouldn't use ourselves.",
-    details: [
-      "Unit, integration & E2E test suite",
-      "Load & performance benchmarking",
-      "Security vulnerability audit",
-      "WCAG accessibility compliance",
-      "Cross-browser & device testing",
-    ],
-    deliverable: "QA Report + Bug-free Build",
-  },
-  {
-    num: "05", phase: "Phase Five",
-    title: "Launch & Handoff",
-    icon: "▲",
-    color: "#00ff9d",
-    duration: "1 week",
-    desc: "Zero-downtime deployment, full documentation, team training, and a smooth handover so you can run independently.",
-    details: [
-      "CI/CD pipeline configuration",
-      "Zero-downtime production deployment",
-      "Full technical documentation",
-      "Team training & walkthrough sessions",
-      "Post-launch monitoring setup",
-    ],
-    deliverable: "Live Product + Full Documentation",
-  },
-  {
-    num: "06", phase: "Phase Six",
-    title: "Support & Scale",
-    icon: "∞",
-    color: "#8b5cf6",
-    duration: "Ongoing",
-    desc: "We don't disappear after launch. Retainer options, feature sprints, performance monitoring — we grow with you.",
-    details: [
-      "Monthly retainer engagements",
-      "24h critical bug response SLA",
-      "Feature sprint planning & execution",
-      "Performance monitoring & reporting",
-      "Strategic product roadmap advisory",
-    ],
-    deliverable: "Growth-Ready Product",
-  },
-];
 
 /* ── BIG STEP CARD ── */
 function StepCard({ step, index }) {
@@ -317,15 +213,6 @@ function Reveal({children,delay=0,style={}}) {
 }
 
 /* ── FAQ ── */
-const FAQS = [
-  { q: "How long does a typical project take?", a: "Most projects run 8–16 weeks from kickoff to launch, depending on scope. We always give you an accurate timeline during Discovery — and we stick to it." },
-  { q: "Do you work on fixed-price or time & materials?", a: "Both. Fixed-price works well for well-scoped projects; T&M is better for evolving products. We'll recommend the right model after Discovery." },
-  { q: "Can we start without a full brief?", a: "Absolutely. Discovery is specifically designed to help you define exactly what you need. Come with a rough idea and we'll shape it into a solid plan." },
-  { q: "What tools do you use for communication?", a: "Slack for async communication, Linear for project tracking, Figma for design, and GitHub for code. You get full visibility into everything — no black boxes." },
-  { q: "Do you offer post-launch support?", a: "Yes. We offer monthly retainers for ongoing support, feature development, and monitoring. Most clients stay with us long after the initial launch." },
-  { q: "Who owns the code and IP?", a: "You do — 100%. All code, designs, and assets are transferred to you at handoff. No lock-in, no licensing fees, no strings attached." },
-];
-
 function FAQ() {
   const [open, setOpen] = useState(null);
   const [ref, vis] = useReveal();
@@ -357,17 +244,6 @@ function FAQ() {
 }
 
 /* ── TOOLS STRIP ── */
-const TOOLS = [
-  { icon: "Ln", label: "Linear", color: "#5e6ad2" },
-  { icon: "Gh", label: "GitHub", color: "#00d4ff" },
-  { icon: "Fg", label: "Figma", color: "#00ff9d" },
-  { icon: "Sl", label: "Slack", color: "#8b5cf6" },
-  { icon: "Vr", label: "Vercel", color: "#00d4ff" },
-  { icon: "Dk", label: "Docker", color: "#00ff9d" },
-  { icon: "Aw", label: "AWS", color: "#8b5cf6" },
-  { icon: "Nt", label: "Notion", color: "#00d4ff" },
-];
-
 function ToolsStrip() {
   const [ref, vis] = useReveal();
   return (

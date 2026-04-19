@@ -1,13 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import Nav from "../components/Nav.jsx";
 import PageHero from "../components/PageHero.jsx";
-
-const G = {
-  bg: "#04060f", bg2: "#07091a", surface: "#0b0f1e",
-  accent: "#00d4ff", green: "#00ff9d", purple: "#8b5cf6",
-  text: "#e2eeff", muted: "#4f6080", border: "rgba(0,212,255,.1)",
-  mono: "'Space Mono', monospace", display: "'Syne', sans-serif",
-};
+import { G } from "../data/theme.js";
+import { SERVICES, PROCESS, FAQS } from "../data/services.jsx";
 
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
@@ -61,79 +56,7 @@ function ServicesHero() {
   );
 }
 
-/* ── SERVICE DATA ── */
-const SERVICES = [
-  {
-    id:"web", num:"01", color: G.accent,
-    icon: <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="2" y="6" width="32" height="24" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M2 12h32M10 6v6M8 18h4M8 22h8M20 22h8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>,
-    title:"Website Development",
-    short:"Blazing-fast, pixel-perfect web experiences.",
-    desc:"We build performant, conversion-focused websites and web apps using modern stacks. From landing pages to complex enterprise portals — every pixel is intentional, every interaction is smooth.",
-    features:["Custom React / Next.js development","CMS integration (Sanity, Contentful)","SEO-optimised architecture","Performance & Core Web Vitals tuning","Responsive & accessibility-first design"],
-    tags:["React","Next.js","Node.js","Tailwind","TypeScript"],
-    deliverables:["Figma designs","Production codebase","Hosting & CI/CD setup","3-month support"],
-  },
-  {
-    id:"ai", num:"02", color: G.green,
-    icon: <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="6" stroke="currentColor" strokeWidth="1.5"/><path d="M18 4v4M18 28v4M4 18h4M28 18h4M7.5 7.5l2.8 2.8M25.7 25.7l2.8 2.8M7.5 28.5l2.8-2.8M25.7 10.3l2.8-2.8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>,
-    title:"AI Integrations",
-    short:"Embed intelligent automation into your product.",
-    desc:"We integrate large language models, build custom AI pipelines, and create automation systems that save your team hours every day. From smart chatbots to full ML feature development.",
-    features:["LLM-powered features (GPT-4, Claude, Gemini)","RAG systems & vector database setup","Custom AI chatbots & assistants","Recommendation & prediction engines","AI workflow automation"],
-    tags:["OpenAI","LangChain","Python","Pinecone","HuggingFace"],
-    deliverables:["AI architecture doc","Production API","Monitoring dashboard","Training & handoff"],
-  },
-  {
-    id:"mobile", num:"03", color: G.purple,
-    icon: <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="10" y="2" width="16" height="32" rx="3" stroke="currentColor" strokeWidth="1.5"/><path d="M16 28h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><path d="M14 6h8" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity=".5"/></svg>,
-    title:"Mobile Applications",
-    short:"Cross-platform apps that feel truly native.",
-    desc:"Beautiful, fast mobile apps built with React Native that work flawlessly on both iOS and Android. We handle everything from UX design to App Store submission and ongoing maintenance.",
-    features:["React Native cross-platform development","iOS & Android native modules","Offline-first architecture","Push notifications & deep linking","App Store & Play Store submission"],
-    tags:["React Native","Expo","Firebase","TypeScript","Redux"],
-    deliverables:["UI/UX prototypes","iOS + Android builds","App Store submissions","Post-launch support"],
-  },
-  {
-    id:"design", num:"04", color:"#f59e0b",
-    icon: <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M6 30l5-5 14-14-5-5L6 20v10zM20 6l5 5M25 11l4-4a2 2 0 000-3l-2-2a2 2 0 00-3 0l-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-    title:"UI/UX Design",
-    short:"Interfaces that convert and delight users.",
-    desc:"Research-backed, visually refined interface design — built in Figma before a single line of code. We craft design systems, prototype flows, and iterate until every interaction feels inevitable.",
-    features:["User research & journey mapping","Figma design systems","Interactive prototyping","Usability testing","Design-to-dev handoff"],
-    tags:["Figma","Design Systems","Prototyping","User Testing","Framer"],
-    deliverables:["Full Figma file","Design system doc","Prototype links","Developer specs"],
-  },
-  {
-    id:"cloud", num:"05", color:"#06b6d4",
-    icon: <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M10 26a7 7 0 01-.4-14 9 9 0 0117.8 2A5 5 0 0126 26H10z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><path d="M18 20v8M15 25l3 3 3-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-    title:"Cloud & DevOps",
-    short:"Scalable infra and zero-downtime deployments.",
-    desc:"From containerised microservices to full Kubernetes clusters — we build the infrastructure that scales with your growth. CI/CD pipelines, monitoring, and 24/7 reliability built in.",
-    features:["AWS / GCP infrastructure setup","Docker & Kubernetes orchestration","CI/CD pipeline automation","Monitoring & alerting (Datadog, Grafana)","Security & compliance audits"],
-    tags:["AWS","Docker","Kubernetes","Terraform","GitHub Actions"],
-    deliverables:["Infra architecture doc","IaC codebase","Runbooks","Ongoing SLA support"],
-  },
-  {
-    id:"ecom", num:"06", color:"#10b981",
-    icon: <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M4 4h4l3 16h16l3-10H10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="14" cy="28" r="2" stroke="currentColor" strokeWidth="1.5"/><circle cx="26" cy="28" r="2" stroke="currentColor" strokeWidth="1.5"/></svg>,
-    title:"E-Commerce Solutions",
-    short:"Stores built to sell — at any scale.",
-    desc:"Headless storefronts, lightning-fast checkout flows and bulletproof payment integrations. We build e-commerce experiences that convert browsers into buyers and buyers into loyal customers.",
-    features:["Headless Shopify & custom storefronts","Stripe & Razorpay integration","Inventory & order management","Conversion-rate optimisation","Multi-currency & internationalisation"],
-    tags:["Shopify","Next.js","Stripe","Razorpay","WooCommerce"],
-    deliverables:["Custom storefront","Payment integration","Admin dashboard","Analytics setup"],
-  },
-];
-
 /* ── PROCESS STEPS ── */
-const PROCESS = [
-  {n:"01",t:"Discovery Call",d:"We learn your goals, constraints and vision. No templates — every engagement is bespoke."},
-  {n:"02",t:"Proposal & Scope",d:"A clear fixed-scope proposal with timelines, milestones and pricing — no surprises."},
-  {n:"03",t:"Design Sprint",d:"Wireframes and high-fidelity designs before code. You approve everything first."},
-  {n:"04",t:"Build & Iterate",d:"Biweekly sprints with staging previews. You stay in the loop at every step."},
-  {n:"05",t:"QA & Launch",d:"Thorough testing across devices, browsers and edge cases. Then a smooth go-live."},
-  {n:"06",t:"Support & Scale",d:"Post-launch monitoring, bug fixes and feature additions as your product grows."},
-];
 
 /* ── HELPERS ── */
 function useInView(threshold=.12) {
@@ -244,14 +167,14 @@ function Process() {
         </Reveal>
         <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:1,background:G.border,border:`1px solid ${G.border}`}}>
           {PROCESS.map((p,i)=>(
-            <Reveal key={p.n} delay={i*.07}>
+            <Reveal key={p.num} delay={i*.07}>
               <div style={{background:G.bg,padding:"2.2rem",position:"relative",overflow:"hidden",height:"100%",transition:"background .3s"}}
                 onMouseEnter={e=>{e.currentTarget.style.background=G.surface;}}
                 onMouseLeave={e=>{e.currentTarget.style.background=G.bg;}}>
-                <div style={{position:"absolute",top:-20,right:-20,fontFamily:G.mono,fontSize:"5rem",fontWeight:700,color:G.accent,opacity:.04,lineHeight:1}}>{p.n}</div>
-                <div style={{fontFamily:G.mono,fontSize:".7rem",color:G.accent,letterSpacing:".1em",marginBottom:"1rem"}}>{p.n}</div>
-                <h3 style={{fontSize:"1.05rem",fontWeight:700,marginBottom:".6rem",letterSpacing:"-.01em"}}>{p.t}</h3>
-                <p style={{fontSize:".83rem",color:G.muted,lineHeight:1.68}}>{p.d}</p>
+                <div style={{position:"absolute",top:-20,right:-20,fontFamily:G.mono,fontSize:"5rem",fontWeight:700,color:G.accent,opacity:.04,lineHeight:1}}>{p.num}</div>
+                <div style={{fontFamily:G.mono,fontSize:".7rem",color:G.accent,letterSpacing:".1em",marginBottom:"1rem"}}>{p.num}</div>
+                <h3 style={{fontSize:"1.05rem",fontWeight:700,marginBottom:".6rem",letterSpacing:"-.01em"}}>{p.title}</h3>
+                <p style={{fontSize:".83rem",color:G.muted,lineHeight:1.68}}>{p.desc}</p>
               </div>
             </Reveal>
           ))}
@@ -262,13 +185,6 @@ function Process() {
 }
 
 /* ── FAQ ── */
-const FAQS=[
-  {q:"How long does a typical project take?",a:"Most websites take 4–8 weeks. Mobile apps are typically 8–14 weeks. AI integrations vary by scope but usually 4–10 weeks. We provide a detailed timeline in every proposal."},
-  {q:"Do you work with startups or established businesses?",a:"Both. We've shipped MVPs for early-stage founders and built enterprise-scale systems for established companies. Our process adapts to your stage."},
-  {q:"What does your pricing look like?",a:"We work on fixed-scope project pricing — no hourly billing surprises. After a discovery call, we send a detailed proposal with a clear price. Most projects range from ₹1.5L to ₹15L+ depending on scope."},
-  {q:"Will I own the code?",a:"Yes, always. You own 100% of the codebase, designs, and all deliverables once the project is complete. No lock-in, no licensing fees."},
-  {q:"Do you offer post-launch support?",a:"Yes. Every project includes 90 days of bug-fix support. We also offer ongoing retainer plans for feature development and maintenance."},
-];
 function FAQ() {
   const [open,setOpen]=useState(null);
   return (
@@ -281,14 +197,14 @@ function FAQ() {
           </div>
         </Reveal>
         {FAQS.map((f,i)=>(
-          <Reveal key={f.q} delay={i*.06}>
+          <Reveal key={f.question} delay={i*.06}>
             <div style={{borderBottom:`1px solid ${G.border}`,overflow:"hidden"}}>
               <button onClick={()=>setOpen(open===i?null:i)} style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",padding:"1.4rem 0",background:"none",border:"none",cursor:"none",textAlign:"left",gap:"1rem"}}>
-                <span style={{fontSize:"1rem",fontWeight:700,color:open===i?G.accent:G.text,transition:"color .25s",letterSpacing:"-.01em"}}>{f.q}</span>
+                <span style={{fontSize:"1rem",fontWeight:700,color:open===i?G.accent:G.text,transition:"color .25s",letterSpacing:"-.01em"}}>{f.question}</span>
                 <span style={{color:open===i?G.accent:G.muted,transition:"transform .3s,color .25s",transform:open===i?"rotate(45deg)":"none",fontSize:"1.4rem",lineHeight:1,flexShrink:0}}>+</span>
               </button>
               <div style={{maxHeight:open===i?200:0,overflow:"hidden",transition:"max-height .4s cubic-bezier(.4,0,.2,1)"}}>
-                <p style={{fontSize:".9rem",color:G.muted,lineHeight:1.78,paddingBottom:"1.4rem"}}>{f.a}</p>
+                <p style={{fontSize:".9rem",color:G.muted,lineHeight:1.78,paddingBottom:"1.4rem"}}>{f.answer}</p>
               </div>
             </div>
           </Reveal>

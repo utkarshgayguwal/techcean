@@ -1,13 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Nav from "../components/Nav";
-
-/* ─────────────────────────── STYLES ─────────────────────────── */
-const G = {
-  bg: "#04060f", bg2: "#07091a", surface: "#0b0f1e",
-  accent: "#00d4ff", green: "#00ff9d", purple: "#8b5cf6",
-  text: "#e2eeff", muted: "#4f6080", border: "rgba(0,212,255,.1)",
-  mono: "'Space Mono', monospace", display: "'Syne', sans-serif",
-};
+import { G } from "../data/theme.js";
+import { STACK, TESTI, STATS } from "../data/home.js";
 
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
@@ -159,11 +153,10 @@ function Marquee() {
 
 /* ─────────────────────────── STATS ─────────────────────────── */
 function Stats() {
-  const data = [["50+","Projects Delivered"],["98%","Client Satisfaction"],["5+","Years Experience"],["24h","Average Response"]];
   return (
     <div id="stats" style={{background:G.bg2,borderBottom:`1px solid ${G.border}`}}>
       <div style={{maxWidth:1280,margin:"0 auto",display:"grid",gridTemplateColumns:"repeat(4,1fr)",background:G.border,gap:1}}>
-        {data.map(([n,l],i) => (
+        {STATS.map(([n,l],i) => (
           <RevealBox key={l} delay={i*.08}>
             <div style={{background:G.bg2,padding:"3rem 2rem",textAlign:"center",position:"relative",overflow:"hidden",transition:"background .3s"}}
               onMouseEnter={e=>{e.currentTarget.style.background=G.surface;e.currentTarget.querySelector(".sline").style.width="64px";}}
@@ -181,12 +174,6 @@ function Stats() {
 }
 
 /* ─────────────────────────── TECH STACK ─────────────────────────── */
-const STACK = {
-  Frontend: [{icon:"⚛",n:"React"},{icon:"▲",n:"Next.js"},{icon:"🌀",n:"Tailwind"},{icon:"📦",n:"Vite"},{icon:"🦋",n:"TypeScript"},{icon:"🎨",n:"Framer"}],
-  Backend:  [{icon:"🟢",n:"Node.js"},{icon:"🐍",n:"Python"},{icon:"🚀",n:"FastAPI"},{icon:"🛡",n:"NestJS"},{icon:"🐘",n:"PostgreSQL"},{icon:"🔴",n:"Redis"}],
-  AI:       [{icon:"🤖",n:"OpenAI"},{icon:"🦜",n:"LangChain"},{icon:"🧠",n:"PyTorch"},{icon:"📊",n:"Pandas"},{icon:"🔍",n:"Pinecone"},{icon:"🪄",n:"HuggingFace"}],
-  Cloud:    [{icon:"☁",n:"AWS"},{icon:"🐳",n:"Docker"},{icon:"⚙",n:"Kubernetes"},{icon:"🔁",n:"GitHub CI"},{icon:"🌍",n:"Vercel"},{icon:"🔥",n:"Firebase"}],
-};
 function TechStack() {
   const [active, setActive] = useState("Frontend");
   const [key, setKey] = useState(0);
@@ -204,12 +191,12 @@ function TechStack() {
       </div>
       <div key={key} style={{display:"grid",gridTemplateColumns:"repeat(6,1fr)",gap:1,background:G.border,border:`1px solid ${G.border}`}}>
         {STACK[active].map((t,i) => (
-          <div key={t.n} className="reveal in" style={{background:G.bg,padding:"2rem 1rem",display:"flex",flexDirection:"column",alignItems:"center",gap:10,textAlign:"center",position:"relative",overflow:"hidden",cursor:"none",transition:"background .3s",animation:`fadeUp .5s ${i*.06}s both`}}
+          <div key={t.name} className="reveal in" style={{background:G.bg,padding:"2rem 1rem",display:"flex",flexDirection:"column",alignItems:"center",gap:10,textAlign:"center",position:"relative",overflow:"hidden",cursor:"none",transition:"background .3s",animation:`fadeUp .5s ${i*.06}s both`}}
             onMouseEnter={e=>{e.currentTarget.style.background=G.surface;e.currentTarget.querySelector(".ti").style.filter="none";e.currentTarget.querySelector(".tn").style.color=G.accent;}}
             onMouseLeave={e=>{e.currentTarget.style.background=G.bg;e.currentTarget.querySelector(".ti").style.filter="grayscale(1) brightness(.6)";e.currentTarget.querySelector(".tn").style.color=G.muted;}}>
             <div style={{position:"absolute",inset:0,background:`radial-gradient(circle at 50% -10%,rgba(0,212,255,.09),transparent 65%)`,transform:"translateY(-100%)",transition:"transform .4s",pointerEvents:"none"}}/>
             <span className="ti" style={{fontSize:"1.7rem",filter:"grayscale(1) brightness(.6)",transition:"filter .3s"}}>{t.icon}</span>
-            <span className="tn" style={{fontFamily:G.mono,fontSize:".68rem",color:G.muted,letterSpacing:".07em",transition:"color .3s"}}>{t.n}</span>
+            <span className="tn" style={{fontFamily:G.mono,fontSize:".68rem",color:G.muted,letterSpacing:".07em",transition:"color .3s"}}>{t.name}</span>
           </div>
         ))}
       </div>
@@ -218,11 +205,6 @@ function TechStack() {
 }
 
 /* ─────────────────────────── TESTIMONIALS ─────────────────────────── */
-const TESTI = [
-  {q:"TechCean delivered our platform 2 weeks ahead of schedule. The quality of code and attention to detail was extraordinary.",name:"Aryan Sharma",role:"Founder — BuildFast",init:"AS",color:G.accent},
-  {q:"Their AI integration tripled our lead conversion rate. Genuinely one of the best technical teams I've worked with.",name:"Priya Mehta",role:"CTO — Growlytics",init:"PM",color:G.green},
-  {q:"From design to deployment, the process was smooth, transparent and professional. Will definitely work with them again.",name:"Rahul Desai",role:"Product Manager — Novex",init:"RD",color:G.purple},
-];
 function Testimonials() {
   return (
     <section id="work" style={{padding:"8rem 4rem",background:G.bg2,borderTop:`1px solid ${G.border}`}}>
