@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Nav from "./components/Nav.jsx";
+import PageHero from "./components/PageHero.jsx";
 import "./styles/global.css";
 
 const G = {
@@ -34,34 +35,11 @@ function Cursor() {
 
 function ContactHero() {
   return (
-    <section style={{position:"relative",minHeight:"60vh",display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"10rem 4rem 6rem",overflow:"hidden",borderBottom:`1px solid ${G.border}`}}>
-      <svg style={{position:"absolute",inset:0,width:"100%",height:"100%",opacity:.14}} xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="cgrid" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path d="M 60 0 L 0 0 0 60" fill="none" stroke={G.accent} strokeWidth=".4"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#cgrid)"/>
-      </svg>
-      {[["0,0","top:2rem;left:2rem"],["0,0","top:2rem;right:2rem;transform:scaleX(-1)"],["0,0","bottom:2rem;left:2rem;transform:scaleY(-1)"],["0,0","bottom:2rem;right:2rem;transform:scale(-1,-1)"]].map(([,s],i)=>(
-        <svg key={i} width="40" height="40" style={{position:"absolute",...Object.fromEntries(s.split(";").map(x=>x.split(":")))}} viewBox="0 0 40 40" fill="none">
-          <path d="M2 18V2h16" stroke={G.accent} strokeWidth="1.5" opacity=".5"/>
-        </svg>
-      ))}
-      <div style={{position:"absolute",top:"30%",left:"50%",transform:"translateX(-50%)",width:500,height:300,background:`radial-gradient(ellipse,rgba(0,212,255,.08),transparent 70%)`,pointerEvents:"none"}}/>
-      <div style={{position:"relative",zIndex:2}}>
-        <div style={{display:"inline-flex",alignItems:"center",gap:8,padding:".28rem .85rem",border:`1px solid rgba(0,255,157,.22)`,background:"rgba(0,255,157,.05)",fontFamily:G.mono,fontSize:".65rem",letterSpacing:".1em",color:G.green,marginBottom:"1.6rem",animation:"fadeUp .7s both"}}>
-          <span style={{width:5,height:5,background:G.green,borderRadius:"50%",animation:"pulse 2s infinite"}}/>
-          GET IN TOUCH
-        </div>
-        <h1 style={{fontSize:"clamp(3rem,7vw,6rem)",fontWeight:800,lineHeight:1,letterSpacing:"-.035em",marginBottom:"1.2rem",animation:"fadeUp .6s .1s both"}}>
-          Let's <span style={{background:`linear-gradient(100deg,${G.accent},${G.green})`,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>connect</span>
-        </h1>
-        <p style={{fontSize:"clamp(.9rem,1.4vw,1.1rem)",color:G.muted,lineHeight:1.78,maxWidth:520,margin:"0 auto",animation:"fadeUp .6s .2s both"}}>
-          Have a project in mind? We'd love to hear from you. Send us a message and we'll get back to you within 24 hours.
-        </p>
-      </div>
-    </section>
+    <PageHero
+      badge="GET IN TOUCH"
+      title={<><span>Let's </span><span style={{ background: `linear-gradient(100deg,${G.accent},${G.green})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>connect</span></>}
+      subtitle="Have a project in mind? We'd love to hear from you. Send us a message and we'll get back to you within 24 hours."
+    />
   );
 }
 

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import styles from "./WorkPage.module.css";
 import Nav from "./components/Nav.jsx";
+import PageHero from "./components/PageHero.jsx";
 import "./styles/global.css";
 
 /* ── SHARED THEME TOKENS ── */
@@ -41,50 +42,17 @@ function useReveal(delay = 0) {
 
 /* ── HERO ── */
 function WorkHero() {
-  const [ref, vis] = useReveal();
   return (
-    <section className={styles.hero}>
-      {/* grid bg */}
-      <svg className={styles.heroBg} xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="wgrid" width="64" height="64" patternUnits="userSpaceOnUse">
-            <path d="M 64 0 L 0 0 0 64" fill="none" stroke={G.accent} strokeWidth="0.35" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#wgrid)" />
-      </svg>
-      {/* corner brackets */}
-      {["tl","tr","bl","br"].map(pos => (
-        <svg key={pos} className={`${styles.bracket} ${styles[`bracket_${pos}`]}`} width="36" height="36" viewBox="0 0 36 36" fill="none">
-          <path d="M2 16V2h14" stroke={G.accent} strokeWidth="1.5" opacity=".45" />
-        </svg>
-      ))}
-      <div className={styles.heroBg2} />
-      <div ref={ref} className={`${styles.heroContent} ${vis ? styles.vis : ""}`}>
-        <div className={styles.badge}>
-          <span className={styles.badgeDot} />
-          CASE STUDIES &amp; PORTFOLIO
-        </div>
-        <h1 className={styles.heroH1}>
-          Work we're <br />
-          <span className={styles.grad}>proud of</span>
-        </h1>
-        <p className={styles.heroSub}>
-          Real products. Real clients. Real results — from zero to production-ready, these are the digital systems we've built that are live and performing today.
-        </p>
-        <div className={styles.heroMeta}>
-          <span className={styles.heroMetaItem}><span className={styles.heroMetaNum}>50+</span>Projects</span>
-          <span className={styles.heroMetaDivider} />
-          <span className={styles.heroMetaItem}><span className={styles.heroMetaNum}>12</span>Industries</span>
-          <span className={styles.heroMetaDivider} />
-          <span className={styles.heroMetaItem}><span className={styles.heroMetaNum}>98%</span>Satisfaction</span>
-        </div>
-      </div>
-      <div className={styles.scrollHint}>
-        <span>SCROLL</span>
-        <div className={styles.scrollLine} />
-      </div>
-    </section>
+    <PageHero
+      badge="CASE STUDIES &amp; PORTFOLIO"
+      title={<><span>Work we're </span><span style={{ background: `linear-gradient(100deg,${G.accent},${G.green})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>proud of</span></>}
+      subtitle="Real products. Real clients. Real results — from zero to production-ready, these are the digital systems we've built that are live and performing today."
+      stats={[
+        { value: "50+", label: "Projects" },
+        { value: "12", label: "Industries" },
+        { value: "98%", label: "Satisfaction" },
+      ]}
+    />
   );
 }
 
