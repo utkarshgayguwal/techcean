@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import Nav from "./components/Nav";
+import Nav from "../components/Nav";
 
 /* ─────────────────────────── STYLES ─────────────────────────── */
 const G = {

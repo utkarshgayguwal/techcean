@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import styles from "./WorkPage.module.css";
-import Nav from "./components/Nav.jsx";
-import PageHero from "./components/PageHero.jsx";
-import "./styles/global.css";
+import styles from "./Work.module.css";
+import Nav from "../components/Nav.jsx";
+import PageHero from "../components/PageHero.jsx";
+import "../styles/global.css";
 
 /* ── SHARED THEME TOKENS ── */
 const G = {

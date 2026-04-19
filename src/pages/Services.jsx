@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import Nav from "./components/Nav.jsx";
-import PageHero from "./components/PageHero.jsx";
+import Nav from "../components/Nav.jsx";
+import PageHero from "../components/PageHero.jsx";
 
 const G = {
   bg: "#04060f", bg2: "#07091a", surface: "#0b0f1e",

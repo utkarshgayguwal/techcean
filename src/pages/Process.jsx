@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import styles from "./ProcessPage.module.css";
-import Nav from "./components/Nav.jsx";
+import styles from "./Process.module.css";
+import Nav from "../components/Nav.jsx";
 
 const G = {
   bg: "#04060f", bg2: "#07091a", surface: "#0b0f1e",
