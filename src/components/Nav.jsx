@@ -8,10 +8,10 @@ const G = {
 };
 
 const links = [
+  { name: 'Home', href: '/' },
   { name: 'Services', href: '/services' },
   { name: 'Work', href: '/work' },
   { name: 'Process', href: '/process' },
-  { name: 'Contact', href: '/contact' },
 ];
 
 export default function Nav({ active = 'Home' }) {
@@ -59,7 +59,7 @@ export default function Nav({ active = 'Home' }) {
         onMouseEnter={e => { e.currentTarget.style.background = G.accent; e.currentTarget.style.color = "#000"; e.currentTarget.style.boxShadow = `0 0 24px rgba(0,212,255,.45)`; }}
         onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = G.accent; e.currentTarget.style.boxShadow = "none"; }}
       >
-        Get Started
+        Contact Us
       </a>
     </nav>
   );
