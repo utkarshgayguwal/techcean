@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import Nav from "./components/Nav";
 
 /* ─────────────────────────── STYLES ─────────────────────────── */
 const G = {
@@ -47,26 +48,6 @@ function Cursor() {
   return (<><div className="cursor" ref={curRef}/><div className="cursor-ring" ref={ringRef}/></>);
 }
 
-/* ─────────────────────────── NAV ─────────────────────────── */
-function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  useEffect(() => { const fn = () => setScrolled(window.scrollY > 50); window.addEventListener("scroll", fn); return () => window.removeEventListener("scroll", fn); }, []);
-  const navStyle = { position:"fixed",top:0,left:0,right:0,zIndex:100,display:"flex",alignItems:"center",justifyContent:"space-between",padding: scrolled ? "1rem 4rem" : "1.6rem 4rem",transition:"all .4s",background: scrolled ? "rgba(4,6,15,.9)" : "transparent",backdropFilter: scrolled ? "blur(20px)" : "none",borderBottom: scrolled ? `1px solid ${G.border}` : "1px solid transparent" };
-  return (
-    <nav style={navStyle}>
-      <a href="#" style={{fontFamily:G.mono,fontSize:"1rem",fontWeight:700,display:"flex",alignItems:"center",gap:2}}>
-        <span style={{color:G.green}}>&lt;</span><span>TechCean</span><span style={{color:G.green}}>/&gt;</span>
-      </a>
-      <ul style={{display:"flex",gap:"2.5rem",listStyle:"none",alignItems:"center"}}>
-        {["Services","Work","Process","Contact"].map(l => (
-          <li key={l}><a href={l === "Services" ? "/services" : l === "Work" ? "/work" : l === "Process" ? "/process" : l === "Contact" ? "/contact" : `#${l.toLowerCase()}`} style={{fontFamily:G.mono,fontSize:".72rem",fontWeight:700,letterSpacing:".08em",textTransform:"uppercase",color:G.muted,transition:"color .2s"}} onMouseEnter={e=>e.target.style.color=G.text} onMouseLeave={e=>e.target.style.color=G.muted}>{l}</a></li>
-        ))}
-      </ul>
-      <a href="#contact" style={{fontFamily:G.mono,fontSize:".72rem",fontWeight:700,letterSpacing:".07em",textTransform:"uppercase",padding:".55rem 1.4rem",border:`1px solid ${G.accent}`,color:G.accent,clipPath:"polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%)",transition:"all .25s"}} onMouseEnter={e=>{e.currentTarget.style.background=G.accent;e.currentTarget.style.color="#000";e.currentTarget.style.boxShadow=`0 0 24px rgba(0,212,255,.45)`;}} onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color=G.accent;e.currentTarget.style.boxShadow="none";}}>Get Started</a>
-    </nav>
-  );
-}
 
 /* ─────────────────────────── HERO CANVAS ─────────────────────────── */
 function GridCanvas() {
