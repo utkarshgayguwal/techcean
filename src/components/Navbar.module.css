@@ -67,6 +67,8 @@
 }
 .links a:hover { color: var(--text); }
 .links a:hover::after { width: 100%; }
+.links a.activeLink { color: var(--accent); }
+.links a.activeLink::after { width: 100%; }
 
 .linkNum {
   font-family: var(--font-mono);

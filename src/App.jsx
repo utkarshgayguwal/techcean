@@ -60,7 +60,7 @@ function Nav() {
       </a>
       <ul style={{display:"flex",gap:"2.5rem",listStyle:"none",alignItems:"center"}}>
         {["Services","Work","Process","Contact"].map(l => (
-          <li key={l}><a href={l === "Services" ? "/services" : `#${l.toLowerCase()}`} style={{fontFamily:G.mono,fontSize:".72rem",fontWeight:700,letterSpacing:".08em",textTransform:"uppercase",color:G.muted,transition:"color .2s"}} onMouseEnter={e=>e.target.style.color=G.text} onMouseLeave={e=>e.target.style.color=G.muted}>{l}</a></li>
+          <li key={l}><a href={l === "Services" ? "/services" : l === "Work" ? "/work" : `#${l.toLowerCase()}`} style={{fontFamily:G.mono,fontSize:".72rem",fontWeight:700,letterSpacing:".08em",textTransform:"uppercase",color:G.muted,transition:"color .2s"}} onMouseEnter={e=>e.target.style.color=G.text} onMouseLeave={e=>e.target.style.color=G.muted}>{l}</a></li>
         ))}
       </ul>
       <a href="#contact" style={{fontFamily:G.mono,fontSize:".72rem",fontWeight:700,letterSpacing:".07em",textTransform:"uppercase",padding:".55rem 1.4rem",border:`1px solid ${G.accent}`,color:G.accent,clipPath:"polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%)",transition:"all .25s"}} onMouseEnter={e=>{e.currentTarget.style.background=G.accent;e.currentTarget.style.color="#000";e.currentTarget.style.boxShadow=`0 0 24px rgba(0,212,255,.45)`;}} onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color=G.accent;e.currentTarget.style.boxShadow="none";}}>Get Started</a>

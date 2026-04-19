@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import styles from './Navbar.module.css';
 
-const links = ['Services', 'Work', 'Process', 'About', 'Contact'];
+const links = [
+  { name: 'Services', href: '/services' },
+  { name: 'Work', href: '/work' },
+  { name: 'Process', href: '#process' },
+  { name: 'About', href: '#about' },
+  { name: 'Contact', href: '#contact' },
+];
 
-export default function Navbar() {
+export default function Navbar({ active }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -15,7 +21,7 @@ export default function Navbar() {
 
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
-      <a href="#" className={styles.logo} data-hover>
+      <a href="/" className={styles.logo} data-hover>
         <span className={styles.logoTag}>&lt;</span>
         <span className={styles.logoName}>TechCean</span>
         <span className={styles.logoTag}>/&gt;</span>
@@ -23,10 +29,15 @@ export default function Navbar() {
 
       <ul className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
         {links.map((l, i) => (
-          <li key={l} style={{ '--i': i }}>
-            <a href={`#${l.toLowerCase()}`} data-hover onClick={() => setMenuOpen(false)}>
+          <li key={l.name} style={{ '--i': i }}>
+            <a 
+              href={l.href} 
+              data-hover 
+              onClick={() => setMenuOpen(false)}
+              className={active === l.name ? styles.activeLink : ''}
+            >
               <span className={styles.linkNum}>0{i + 1}</span>
-              {l}
+              {l.name}
             </a>
           </li>
         ))}
