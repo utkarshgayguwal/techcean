@@ -4,9 +4,9 @@ import styles from './Navbar.module.css';
 const links = [
   { name: 'Services', href: '/services' },
   { name: 'Work', href: '/work' },
-  { name: 'Process', href: '#process' },
-  { name: 'About', href: '#about' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Process', href: '/process' },
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export default function Navbar({ active }) {
@@ -36,14 +36,13 @@ export default function Navbar({ active }) {
               onClick={() => setMenuOpen(false)}
               className={active === l.name ? styles.activeLink : ''}
             >
-              <span className={styles.linkNum}>0{i + 1}</span>
               {l.name}
             </a>
           </li>
         ))}
       </ul>
 
-      <a href="#contact" className={styles.cta} data-hover>
+      <a href="/contact" className={styles.cta} data-hover>
         <span>Get Started</span>
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
