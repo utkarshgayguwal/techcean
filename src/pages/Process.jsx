@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./Process.module.css";
 import Nav from "../components/Nav.jsx";
+import PageHero from "../components/PageHero.jsx";
 
 const G = {
   bg: "#04060f", bg2: "#07091a", surface: "#0b0f1e",
@@ -102,49 +103,17 @@ function HeroCanvas() {
 
 /* ── HERO ── */
 function Hero() {
-  const [ref, vis] = useReveal();
   return (
-    <section className={styles.hero}>
-      <HeroCanvas />
-      <div className={styles.heroBg2} />
-      {/* corner brackets */}
-      {["tl", "tr", "bl", "br"].map(p => (
-        <svg key={p} className={`${styles.bracket} ${styles[`b_${p}`]}`} width="38" height="38" viewBox="0 0 38 38" fill="none">
-          <path d="M2 17V2h15" stroke="#00d4ff" strokeWidth="1.5" opacity=".4" />
-        </svg>
-      ))}
-      <div ref={ref} className={`${styles.heroContent} ${vis ? styles.vis : ""}`}>
-        <div className={styles.badge}><span className={styles.badgeDot} />OUR METHODOLOGY</div>
-        <div className={styles.heroTag}>
-          <span className={styles.tagBracket}>&lt;</span>
-          <span className={styles.tagWord}>Process</span>
-          <span className={styles.tagBracket}>/&gt;</span>
-        </div>
-        <h1 className={styles.heroH1}>
-          Precision from<br /><span className={styles.grad}>day one</span>
-        </h1>
-        <p className={styles.heroSub}>
-          We don't guess. Every project follows a battle-tested methodology designed to eliminate surprises, ship on time, and scale without pain.
-        </p>
-        <div className={styles.heroStats}>
-          <div className={styles.hStat}>
-            <span className={styles.hNum}><Counter target="50" suffix="+" /></span>
-            <span className={styles.hLabel}>Projects Shipped</span>
-          </div>
-          <div className={styles.hDiv} />
-          <div className={styles.hStat}>
-            <span className={styles.hNum}><Counter target="98" suffix="%" /></span>
-            <span className={styles.hLabel}>On-Time Delivery</span>
-          </div>
-          <div className={styles.hDiv} />
-          <div className={styles.hStat}>
-            <span className={styles.hNum}><Counter target="5" suffix="+" /></span>
-            <span className={styles.hLabel}>Years Experience</span>
-          </div>
-        </div>
-      </div>
-      <div className={styles.scrollHint}><span>SCROLL</span><div className={styles.scrollLine} /></div>
-    </section>
+    <PageHero
+      badge="OUR METHODOLOGY"
+      title={<>Precision from<br /><span className={styles.grad}>day one</span></>}
+      subtitle="We don't guess. Every project follows a battle-tested methodology designed to eliminate surprises, ship on time, and scale without pain."
+      stats={[
+        { value: "50+", label: "Projects Shipped" },
+        { value: "98%", label: "On-Time Delivery" },
+        { value: "5+", label: "Years Experience" },
+      ]}
+    />
   );
 }
 
